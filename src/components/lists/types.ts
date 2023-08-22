@@ -1,9 +1,9 @@
-import { Triangle } from 'types/triangle';
+import { ITriangle } from 'types/common';
 
 export interface ITrianglesList {
-  triangles: Triangle[];
+  triangles: ITriangle[];
 }
 
 export interface ITrianglesListItem {
-  triangle: Triangle;
+  triangle: ITriangle;
 }

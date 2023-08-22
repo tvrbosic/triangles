@@ -7,6 +7,15 @@ function TrianglesListItem({ triangle }: ITrianglesListItem) {
   return (
     <Flex justifyContent="space-between" gap="20px">
       <Flex gap="5px">
+        <Text>Type by side: </Text>
+        <Text>{triangle.typeBySides}</Text>
+      </Flex>
+      <Flex gap="5px">
+        <Text>Type by angle: </Text>
+        <Text>{triangle.typeByAngles}</Text>
+      </Flex>
+
+      <Flex gap="5px">
         <Text>A: </Text>
         <Text>{triangle.sides![0]}</Text>
       </Flex>
