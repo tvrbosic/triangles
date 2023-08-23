@@ -1,7 +1,14 @@
 import { Flex } from '@chakra-ui/react';
 
+import Container from 'components/layouts/Container';
+import CreateTriangleForm from 'components/forms/CreateTriangleForm';
+
 function CreateTriangle() {
-  return <Flex>CreateTriangle</Flex>;
+  return (
+    <Container>
+      <CreateTriangleForm />
+    </Container>
+  );
 }
 
 export default CreateTriangle;

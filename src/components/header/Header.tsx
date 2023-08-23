@@ -20,7 +20,7 @@ function Header() {
         </Text>
         <Navigation />
         <Button colorScheme="teal" size="sm" onClick={addTriangleHandler}>
-          Add triangle
+          Create triangle
         </Button>
       </Flex>
     </Box>

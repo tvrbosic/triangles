@@ -5,9 +5,9 @@ import Header from 'components/header/Header';
 
 const Layout = () => {
   return (
-    <Box bgColor="gray.100">
+    <Box bgColor="gray.100" minHeight="100vh">
       <Header />
-      <Box p={4}>
+      <Box py={8} px={16}>
         <Outlet />
       </Box>
     </Box>

@@ -55,7 +55,7 @@ function TrianglesListItemExpand({ triangle }: ITrianglesListItemExpand) {
 
           <Box>
             <Heading size="md" mb={2}>
-              Other
+              Calculated
             </Heading>
             <Flex gap="5px">
               <Text fontWeight="bold">Perimeter: </Text>

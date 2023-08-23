@@ -1,8 +1,7 @@
-import { Box } from '@chakra-ui/react';
-
 import { ITriangleObject, EGenerateTriangleMethods } from 'types/common';
 import { Triangle } from 'classes/Triangle';
 
+import Container from 'components/layouts/Container';
 import TrianglesList from 'components/lists/TrianglesList';
 
 const mockData: ITriangleObject[] = [
@@ -55,8 +54,8 @@ const mockData: ITriangleObject[] = [
     data: new Triangle(11.3, 2.2, 10, EGenerateTriangleMethods.SSS).data,
   },
   {
-    id: 8,
-    name: 'Triangle 8',
+    id: 9,
+    name: 'Triangle 9',
     dateCreated: new Date().toISOString(),
     data: new Triangle(10, 10, 10, EGenerateTriangleMethods.SSS).data,
   },
@@ -64,9 +63,9 @@ const mockData: ITriangleObject[] = [
 
 function Home() {
   return (
-    <Box bgColor="white">
+    <Container>
       <TrianglesList triangles={mockData} />
-    </Box>
+    </Container>
   );
 }
 

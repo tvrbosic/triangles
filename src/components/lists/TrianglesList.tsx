@@ -11,7 +11,7 @@ function TrianglesList({ triangles }: ITrianglesList) {
       <TrianglesListHeading />
       <Accordion allowToggle>
         {triangles.map((item) => (
-          <TrianglesListItem triangle={item} />
+          <TrianglesListItem key={item.id} triangle={item} />
         ))}
       </Accordion>
     </Box>
