@@ -1,5 +1,6 @@
 import { useState, useEffect, useReducer, useCallback } from 'react';
 import { Box, Button, Center, Flex, Heading, Text } from '@chakra-ui/react';
+import { useMutation } from '@tanstack/react-query';
 
 import {
   ICreateTriangleFormState,
@@ -16,6 +17,7 @@ import {
   checkGeneratedTriangle,
 } from 'utils/validations';
 import { Triangle } from 'classes/Triangle';
+import { postTriangle } from 'api/triangles';
 
 import CreateTriangleFormHeading from 'components/forms/CreateTriangleFormHeading';
 import LabelInput from 'components/forms/LabelInput';
@@ -69,6 +71,16 @@ function CreateTriangleForm() {
   const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
   const [displayError, setDisplayError] = useState<boolean>(false);
 
+  // ############ Mutations
+  const qPostTriangle = useMutation(() =>
+    postTriangle({
+      name: formState.name,
+      dateCreated: new Date().toISOString(),
+      data: triangle!,
+    })
+  );
+
+  // ############ Functions
   const validateInputsAndGenerate = useCallback((formTriangleData: ICreateTriangleFormState) => {
     // Hide previous errors
     setDisplayError(false);
@@ -149,9 +161,7 @@ function CreateTriangleForm() {
 
   const saveHandler = () => {
     if (!errorMessage) {
-      console.log('Save data');
-      // TODO:
-      // Save data
+      qPostTriangle.mutate();
       return;
     }
 

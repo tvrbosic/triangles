@@ -8,11 +8,19 @@ import {
   StackDivider,
   Button,
 } from '@chakra-ui/react';
+import { useMutation } from '@tanstack/react-query';
 
 import { ITrianglesListItemExpand } from 'components/lists/types';
 import { radiansToDegrees } from 'utils/numbers';
+import { deleteTriangle } from 'api/triangles';
 
 function TrianglesListItemExpand({ triangle }: ITrianglesListItemExpand) {
+  const qDeleteTriangle = useMutation(() => deleteTriangle(triangle.id!));
+
+  const deleteHandler = () => {
+    qDeleteTriangle.mutate();
+  };
+
   return (
     <AccordionPanel px={8} pb={6} w="100%">
       <Flex gap={8}>
@@ -73,7 +81,9 @@ function TrianglesListItemExpand({ triangle }: ITrianglesListItemExpand) {
 
           <Flex gap={4} justifyContent="flex-end">
             <Button colorScheme="blue">Edit</Button>
-            <Button colorScheme="red">Delete</Button>
+            <Button colorScheme="red" onClick={deleteHandler}>
+              Delete
+            </Button>
           </Flex>
         </Stack>
         <Flex border="1px solid" borderColor="gray.100" flexGrow={1}>

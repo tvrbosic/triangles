@@ -1,8 +1,12 @@
+import { useQuery } from '@tanstack/react-query';
+
 import { ITriangleObject, EGenerateTriangleMethods } from 'types/common';
 import { Triangle } from 'classes/Triangle';
+import { getTriangles } from 'api/triangles';
 
 import Container from 'components/layouts/Container';
 import TrianglesList from 'components/lists/TrianglesList';
+import { useEffect } from 'react';
 
 const mockData: ITriangleObject[] = [
   {
@@ -62,6 +66,8 @@ const mockData: ITriangleObject[] = [
 ];
 
 function Home() {
+  const qGetTriangles = useQuery(['triangles'], getTriangles);
+
   return (
     <Container>
       <TrianglesList triangles={mockData} />

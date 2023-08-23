@@ -1,5 +1,3 @@
-import { Flex } from '@chakra-ui/react';
-
 import Container from 'components/layouts/Container';
 import CreateTriangleForm from 'components/forms/CreateTriangleForm';
 
