@@ -5,7 +5,7 @@ import Header from 'components/header/Header';
 
 const Layout = () => {
   return (
-    <Box bgColor="gray.50">
+    <Box bgColor="gray.100">
       <Header />
       <Box p={4}>
         <Outlet />

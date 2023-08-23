@@ -7,3 +7,7 @@ export interface ITrianglesList {
 export interface ITrianglesListItem {
   triangle: ITriangleObject;
 }
+
+export interface ITrianglesListItemExpand {
+  triangle: ITriangleObject;
+}
