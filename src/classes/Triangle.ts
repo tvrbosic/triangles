@@ -8,17 +8,7 @@ import {
 import { degreesToRadians, radiansToDegrees } from 'utils/numbers';
 
 export class Triangle {
-  vertex: [TVertex, TVertex, TVertex] = [
-    [0, 0],
-    [0, 0],
-    [0, 0],
-  ];
-  sides: [number, number, number] = [0, 0, 0];
-  angles: [number, number, number] = [0, 0, 0];
-  perimeter: number = 0;
-  area: number = 0;
-  typeBySides: ETypesBySides = ETypesBySides.NOT_A_TRIANGLE;
-  typeByAngles: ETypesByAngles = ETypesByAngles.NOT_A_TRIANGLE;
+  data: ITriangle;
 
   constructor(
     input1: number,
@@ -42,16 +32,10 @@ export class Triangle {
         break;
     }
 
-    if (!triangleData) return;
+    if (!triangleData) throw new Error('Error while creating a triangle');
 
     // Set the properties
-    this.sides = triangleData.sides;
-    this.angles = triangleData.angles;
-    this.vertex = triangleData.vertex;
-    this.perimeter = triangleData.perimeter;
-    this.area = triangleData.area;
-    this.typeBySides = triangleData.typeBySides;
-    this.typeByAngles = triangleData.typeByAngles;
+    this.data = triangleData;
   }
 
   private static generateFromSSA(a: number, b: number, angleC: number): ITriangle {

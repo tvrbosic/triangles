@@ -29,3 +29,10 @@ export interface ITriangle {
   typeBySides: ETypesBySides;
   typeByAngles: ETypesByAngles;
 }
+
+export interface ITriangleObject {
+  id: number;
+  name: string;
+  dateCreated: string;
+  data: ITriangle;
+}

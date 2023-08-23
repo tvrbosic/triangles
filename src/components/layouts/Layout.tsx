@@ -5,11 +5,11 @@ import Header from 'components/header/Header';
 
 const Layout = () => {
   return (
-    <Box>
+    <Box bgColor="gray.50">
       <Header />
-      <main>
+      <Box p={4}>
         <Outlet />
-      </main>
+      </Box>
     </Box>
   );
 };
