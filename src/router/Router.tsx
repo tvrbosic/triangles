@@ -1,5 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 
+import routes from 'router/routes';
+
 import Layout from 'components/layouts/Layout';
 import Login from 'pages/Login';
 import Home from 'pages/Home';
@@ -9,11 +11,11 @@ import EditTriangle from 'pages/EditTriangle';
 const Router = () => {
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route path={routes.home} element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="/triangles/create" element={<CreateTriangle />} />
-        <Route path="/triangles/:id" element={<EditTriangle />} />
-        <Route path="/login" element={<Login />} />
+        <Route path={routes.createTriangle} element={<CreateTriangle />} />
+        <Route path={routes.editTriangle} element={<EditTriangle />} />
+        <Route path={routes.login} element={<Login />} />
       </Route>
     </Routes>
   );
