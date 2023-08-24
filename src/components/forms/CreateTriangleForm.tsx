@@ -1,5 +1,5 @@
 import { useState, useEffect, useReducer, useCallback } from 'react';
-import { Box, Button, Center, Flex, Heading, Text } from '@chakra-ui/react';
+import { Box, Button, Center, Flex, Heading, Text, useDisclosure } from '@chakra-ui/react';
 import { useMutation } from '@tanstack/react-query';
 
 import {
@@ -21,6 +21,7 @@ import Api from 'api/Api';
 
 import CreateTriangleFormHeading from 'components/forms/CreateTriangleFormHeading';
 import LabelInput from 'components/forms/LabelInput';
+import InfoModal from 'components/modals/InfoModal';
 
 function reducer(state: ICreateTriangleFormState, action: ICreateTriangleFormActions) {
   switch (action.type) {
@@ -68,6 +69,7 @@ function CreateTriangleForm() {
   const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
   const [displayError, setDisplayError] = useState<boolean>(false);
   const ApiClient = Api.getInstance();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   // ############ Queries
   const qPostTriangle = useMutation(() =>
@@ -176,6 +178,13 @@ function CreateTriangleForm() {
     }
   }, [triangle, errorMessage]);
 
+  // Show success modal
+  useEffect(() => {
+    if (qPostTriangle.isSuccess) {
+      onOpen();
+    }
+  }, [qPostTriangle.isSuccess, onOpen]);
+
   // ############ Conditional renders
   const conditionalRender = (key: keyof ITriangle) => {
     if (triangle && triangle[key]) {
@@ -185,107 +194,115 @@ function CreateTriangleForm() {
   };
 
   return (
-    <Box flexGrow={1}>
-      <CreateTriangleFormHeading />
+    <>
+      <Box flexGrow={1}>
+        <CreateTriangleFormHeading />
 
-      <Flex gap="50px" mb={4}>
-        <Box flexShrink={0}>
-          <Heading as="h2" size="md" mb={2}>
-            Sides
-          </Heading>
-          <LabelInput
-            label="a: "
-            placeholder="Side a"
-            onChange={(value: string) =>
-              inputChangeHandler(ECreateTriangleFormActions.SET_SIDE_A, value)
-            }
-          />
-          <LabelInput
-            label="b: "
-            placeholder="Side b"
-            onChange={(value: string) =>
-              inputChangeHandler(ECreateTriangleFormActions.SET_SIDE_B, value)
-            }
-          />
-          <LabelInput
-            label="c: "
-            placeholder="Side c"
-            onChange={(value: string) =>
-              inputChangeHandler(ECreateTriangleFormActions.SET_SIDE_C, value)
-            }
-          />
-        </Box>
+        <Flex gap="50px" mb={4}>
+          <Box flexShrink={0}>
+            <Heading as="h2" size="md" mb={2}>
+              Sides
+            </Heading>
+            <LabelInput
+              label="a: "
+              placeholder="Side a"
+              onChange={(value: string) =>
+                inputChangeHandler(ECreateTriangleFormActions.SET_SIDE_A, value)
+              }
+            />
+            <LabelInput
+              label="b: "
+              placeholder="Side b"
+              onChange={(value: string) =>
+                inputChangeHandler(ECreateTriangleFormActions.SET_SIDE_B, value)
+              }
+            />
+            <LabelInput
+              label="c: "
+              placeholder="Side c"
+              onChange={(value: string) =>
+                inputChangeHandler(ECreateTriangleFormActions.SET_SIDE_C, value)
+              }
+            />
+          </Box>
 
-        <Box flexShrink={0}>
-          <Heading as="h2" size="md" mb={2}>
-            Angles [°]
-          </Heading>
-          <LabelInput
-            label="A: "
-            placeholder="Angle A"
-            onChange={(value: string) =>
-              inputChangeHandler(ECreateTriangleFormActions.SET_ANGLE_A, value)
-            }
-          />
-          <LabelInput
-            label="B: "
-            placeholder="Angle B"
-            onChange={(value: string) =>
-              inputChangeHandler(ECreateTriangleFormActions.SET_ANGLE_B, value)
-            }
-          />
-          <LabelInput
-            label="C: "
-            placeholder="Angle C"
-            onChange={(value: string) =>
-              inputChangeHandler(ECreateTriangleFormActions.SET_ANGLE_C, value)
-            }
-          />
-        </Box>
+          <Box flexShrink={0}>
+            <Heading as="h2" size="md" mb={2}>
+              Angles [°]
+            </Heading>
+            <LabelInput
+              label="A: "
+              placeholder="Angle A"
+              onChange={(value: string) =>
+                inputChangeHandler(ECreateTriangleFormActions.SET_ANGLE_A, value)
+              }
+            />
+            <LabelInput
+              label="B: "
+              placeholder="Angle B"
+              onChange={(value: string) =>
+                inputChangeHandler(ECreateTriangleFormActions.SET_ANGLE_B, value)
+              }
+            />
+            <LabelInput
+              label="C: "
+              placeholder="Angle C"
+              onChange={(value: string) =>
+                inputChangeHandler(ECreateTriangleFormActions.SET_ANGLE_C, value)
+              }
+            />
+          </Box>
+
+          <Box>
+            <Heading as="h2" size="md" mb={2}>
+              Calculated
+            </Heading>
+            <Flex mb={2}>
+              <Text fontWeight="bold" mr="10px">
+                Perimeter:
+              </Text>
+              {conditionalRender('perimeter')}
+            </Flex>
+            <Flex mb={2}>
+              <Text fontWeight="bold" mr="10px">
+                Area:
+              </Text>
+              {conditionalRender('area')}
+            </Flex>
+            <Flex mb={2}>
+              <Text fontWeight="bold" mr="10px">
+                Type by sides:
+              </Text>
+              {conditionalRender('typeBySides')}
+            </Flex>
+            <Flex mb={2}>
+              <Text fontWeight="bold" mr="10px">
+                Type by angles:
+              </Text>
+              {conditionalRender('typeByAngles')}
+            </Flex>
+          </Box>
+        </Flex>
+
+        <Center minHeight="27px" mb={4}>
+          <Text fontSize="lg" color="crimson">
+            {displayError ? errorMessage : null}
+          </Text>
+        </Center>
 
         <Box>
-          <Heading as="h2" size="md" mb={2}>
-            Calculated
-          </Heading>
-          <Flex mb={2}>
-            <Text fontWeight="bold" mr="10px">
-              Perimeter:
-            </Text>
-            {conditionalRender('perimeter')}
-          </Flex>
-          <Flex mb={2}>
-            <Text fontWeight="bold" mr="10px">
-              Area:
-            </Text>
-            {conditionalRender('area')}
-          </Flex>
-          <Flex mb={2}>
-            <Text fontWeight="bold" mr="10px">
-              Type by sides:
-            </Text>
-            {conditionalRender('typeBySides')}
-          </Flex>
-          <Flex mb={2}>
-            <Text fontWeight="bold" mr="10px">
-              Type by angles:
-            </Text>
-            {conditionalRender('typeByAngles')}
-          </Flex>
+          <Button colorScheme="blue" px={10} onClick={saveHandler}>
+            Save
+          </Button>
         </Box>
-      </Flex>
-
-      <Center minHeight="27px" mb={4}>
-        <Text fontSize="lg" color="crimson">
-          {displayError ? errorMessage : null}
-        </Text>
-      </Center>
-
-      <Box>
-        <Button colorScheme="blue" px={10} onClick={saveHandler}>
-          Save
-        </Button>
       </Box>
-    </Box>
+      <InfoModal
+        title="Creation successfull"
+        content={<Text>Triangle was successfully added!</Text>}
+        isOpen={isOpen}
+        onClose={onClose}
+      />
+    </>
   );
 }
 
