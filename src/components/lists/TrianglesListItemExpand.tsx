@@ -8,14 +8,20 @@ import {
   StackDivider,
   Button,
 } from '@chakra-ui/react';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { ITrianglesListItemExpand } from 'components/lists/types';
 import { radiansToDegrees } from 'utils/numbers';
-import { deleteTriangle } from 'api/triangles';
+import Api from 'api/Api';
 
 function TrianglesListItemExpand({ triangle }: ITrianglesListItemExpand) {
-  const qDeleteTriangle = useMutation(() => deleteTriangle(triangle.id!));
+  const ApiClient = Api.getInstance();
+  const queryClient = useQueryClient();
+  const qDeleteTriangle = useMutation(() => ApiClient.deleteTriangle(triangle.id!), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['triangles']);
+    },
+  });
 
   const deleteHandler = () => {
     qDeleteTriangle.mutate();

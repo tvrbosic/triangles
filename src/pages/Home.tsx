@@ -1,12 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { getTriangles } from 'api/triangles';
+import Api from 'api/Api';
 
 import Container from 'components/layouts/Container';
 import TrianglesList from 'components/lists/TrianglesList';
 
 function Home() {
-  const qGetTriangles = useQuery(['triangles'], getTriangles);
+  const ApiClient = Api.getInstance();
+  const qGetTriangles = useQuery(['triangles'], ApiClient.getTriangles);
 
   return (
     <Container>

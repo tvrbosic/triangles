@@ -17,7 +17,7 @@ import {
   checkGeneratedTriangle,
 } from 'utils/validations';
 import { Triangle } from 'classes/Triangle';
-import { postTriangle } from 'api/triangles';
+import Api from 'api/Api';
 
 import CreateTriangleFormHeading from 'components/forms/CreateTriangleFormHeading';
 import LabelInput from 'components/forms/LabelInput';
@@ -67,10 +67,11 @@ function CreateTriangleForm() {
   const [triangle, setTriangle] = useState<ITriangle | undefined>(undefined);
   const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
   const [displayError, setDisplayError] = useState<boolean>(false);
+  const ApiClient = Api.getInstance();
 
-  // ############ Mutations
+  // ############ Queries
   const qPostTriangle = useMutation(() =>
-    postTriangle({
+    ApiClient.postTriangle({
       dateCreated: new Date().toISOString(),
       data: triangle!,
     })
