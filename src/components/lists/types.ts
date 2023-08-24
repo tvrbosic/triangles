@@ -1,4 +1,4 @@
-import { ITriangleObject } from 'types/common';
+import { ITriangleObject } from 'types/triangle';
 
 export interface ITrianglesList {
   triangles: ITriangleObject[];

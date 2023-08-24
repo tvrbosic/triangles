@@ -1,4 +1,4 @@
-import { ITriangleData } from 'types/common';
+import { ITriangleData } from 'types/triangle';
 
 export interface ITriangleCanvas {
   triangle: ITriangleData;

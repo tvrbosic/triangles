@@ -4,7 +4,7 @@ import {
   EGenerateTriangleMethods,
   ETypesBySides,
   ETypesByAngles,
-} from 'types/common';
+} from 'types/triangle';
 import { degreesToRadians, radiansToDegrees } from 'utils/numbers';
 
 export class Triangle {

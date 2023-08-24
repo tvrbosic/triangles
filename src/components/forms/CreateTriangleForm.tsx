@@ -7,7 +7,7 @@ import {
   ECreateTriangleFormActions,
   ICreateTriangleFormActions,
 } from 'components/forms/types';
-import { ITriangleData, EGenerateTriangleMethods } from 'types/common';
+import { ITriangleData, EGenerateTriangleMethods } from 'types/triangle';
 import {
   checkSidePresent,
   checkThreeValuesOneSide,

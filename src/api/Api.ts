@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 
-import { ITriangleObject } from 'types/common';
+import { ITriangleObject } from 'types/triangle';
 
 class ApiClient {
   private static instance: ApiClient;

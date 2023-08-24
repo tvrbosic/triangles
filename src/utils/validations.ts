@@ -1,4 +1,4 @@
-import { ITriangleData } from 'types/common';
+import { ITriangleData } from 'types/triangle';
 import { ICreateTriangleFormState } from 'components/forms/types';
 
 // Check if we have at least one side
