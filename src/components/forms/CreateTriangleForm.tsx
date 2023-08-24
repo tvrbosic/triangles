@@ -11,6 +11,7 @@ import { ITriangleData, EGenerateTriangleMethods } from 'types/common';
 import {
   checkSidePresent,
   checkThreeValuesOneSide,
+  checkTooManyValues,
   checkOneSideTwoAngles,
   checkTwoSidesOneAngle,
   checkThreeSides,
@@ -94,7 +95,12 @@ function CreateTriangleForm() {
       return;
     }
     if (!checkThreeValuesOneSide(formTriangleData)) {
-      setErrorMessage('Please three values including one side!');
+      setErrorMessage('Please enter three values including one side!');
+      setTriangle(undefined);
+      return;
+    }
+    if (checkTooManyValues(formTriangleData)) {
+      setErrorMessage('Too many values entered!');
       setTriangle(undefined);
       return;
     }
@@ -282,6 +288,12 @@ function CreateTriangleForm() {
                 Area:
               </Text>
               {conditionalRender('area')}
+            </Flex>
+            <Flex mb={2}>
+              <Text fontWeight="bold" mr="10px">
+                Circumradius:
+              </Text>
+              {conditionalRender('circumradius')}
             </Flex>
             <Flex mb={2}>
               <Text fontWeight="bold" mr="10px">

@@ -21,6 +21,15 @@ export const checkThreeValuesOneSide = (values: ICreateTriangleFormState) => {
   return false;
 };
 
+// Check if we have too many entered values (more than 3)
+export const checkTooManyValues = (values: ICreateTriangleFormState) => {
+  const { sideA, sideB, sideC, angleA, angleB, angleC } = values;
+  const sides = [sideA, sideB, sideC];
+  const angles = [angleA, angleB, angleC];
+
+  return sides.filter(Boolean).length + angles.filter(Boolean).length > 3 ? true : false;
+};
+
 // Check if we have one side and two angles
 export const checkOneSideTwoAngles = (values: ICreateTriangleFormState) => {
   if (checkSidePresent(values)) {
