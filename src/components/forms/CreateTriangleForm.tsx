@@ -67,7 +67,7 @@ const initialState: ICreateTriangleFormState = {
   typeByAngles: '',
 };
 
-function CreateTriangleForm() {
+export default function CreateTriangleForm() {
   const [formState, dispatch] = useReducer(reducer, initialState);
   const [triangle, setTriangle] = useState<ITriangleData | undefined>(undefined);
   const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
@@ -334,5 +334,3 @@ function CreateTriangleForm() {
     </>
   );
 }
-
-export default CreateTriangleForm;

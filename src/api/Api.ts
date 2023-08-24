@@ -20,6 +20,13 @@ class ApiClient {
     return ApiClient.instance;
   }
 
+  // ########### Auth
+  public async postLogin(payload: { email: string; password: string }) {
+    const response = await this.axiosInstance.post('/login', { ...payload });
+    return response.data;
+  }
+
+  // ########### Triangles
   public async getTriangles() {
     const response = await this.axiosInstance.get('/triangles');
     return response.data;

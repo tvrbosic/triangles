@@ -2,7 +2,7 @@ import { Flex, Text, Input } from '@chakra-ui/react';
 
 import { ILabeledInput } from 'components/forms/types';
 
-function LabelInput({ label, placeholder = '', value, onChange }: ILabeledInput) {
+export default function LabelInput({ label, placeholder = '', value, onChange }: ILabeledInput) {
   return (
     <Flex alignItems="center" gap="10px" mb={2}>
       <Text>{label}</Text>
@@ -10,5 +10,3 @@ function LabelInput({ label, placeholder = '', value, onChange }: ILabeledInput)
     </Flex>
   );
 }
-
-export default LabelInput;

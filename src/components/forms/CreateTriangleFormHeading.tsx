@@ -2,7 +2,7 @@ import { Heading, Flex, Box, Text, Image } from '@chakra-ui/react';
 
 import TriangleSvg from 'assets/labeled-triangle.svg';
 
-function CreateTriangleFormHeading() {
+export default function CreateTriangleFormHeading() {
   return (
     <Flex mb={4}>
       <Box>
@@ -21,5 +21,3 @@ function CreateTriangleFormHeading() {
     </Flex>
   );
 }
-
-export default CreateTriangleFormHeading;

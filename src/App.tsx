@@ -7,7 +7,7 @@ import Router from 'router/Router';
 
 const queryClient = new QueryClient();
 
-function App() {
+export default function App() {
   return (
     <BrowserRouter>
       <ChakraProvider>
@@ -20,5 +20,3 @@ function App() {
     </BrowserRouter>
   );
 }
-
-export default App;

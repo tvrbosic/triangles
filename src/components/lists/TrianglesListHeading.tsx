@@ -1,6 +1,6 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
 
-function TrianglesListHeading() {
+export default function TrianglesListHeading() {
   return (
     <Flex px={4} py={2} fontWeight="bold">
       <Text w="10%" pl={2}>
@@ -19,5 +19,3 @@ function TrianglesListHeading() {
     </Flex>
   );
 }
-
-export default TrianglesListHeading;

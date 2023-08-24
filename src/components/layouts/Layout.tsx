@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 import Header from 'components/header/Header';
 
-const Layout = () => {
+export default function Layout() {
   return (
     <Box bgColor="gray.100" minHeight="100vh">
       <Header />
@@ -12,6 +12,4 @@ const Layout = () => {
       </Box>
     </Box>
   );
-};
-
-export default Layout;
+}

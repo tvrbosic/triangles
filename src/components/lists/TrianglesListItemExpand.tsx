@@ -21,7 +21,7 @@ import TriangleCanvas from 'components/canvas/TriangleCanvas';
 import LoadingOverlay from 'components/loader/LoadingOverlay';
 import InfoModal from 'components/modals/InfoModal';
 
-function TrianglesListItemExpand({ triangle }: ITrianglesListItemExpand) {
+export default function TrianglesListItemExpand({ triangle }: ITrianglesListItemExpand) {
   const ApiClient = Api.getInstance();
   const queryClient = useQueryClient();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -136,5 +136,3 @@ function TrianglesListItemExpand({ triangle }: ITrianglesListItemExpand) {
     </>
   );
 }
-
-export default TrianglesListItemExpand;

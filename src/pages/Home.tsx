@@ -6,7 +6,7 @@ import Container from 'components/layouts/Container';
 import LoadingOverlay from 'components/loader/LoadingOverlay';
 import TrianglesList from 'components/lists/TrianglesList';
 
-function Home() {
+export default function Home() {
   const ApiClient = Api.getInstance();
   const qGetTriangles = useQuery(['triangles'], () => ApiClient.getTriangles());
 
@@ -21,5 +21,3 @@ function Home() {
     </>
   );
 }
-
-export default Home;

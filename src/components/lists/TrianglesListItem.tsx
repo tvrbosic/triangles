@@ -4,7 +4,7 @@ import { ITrianglesListItem } from 'components/lists/types';
 
 import TrianglesListItemExpand from 'components/lists/TrianglesListItemExpand';
 
-function TrianglesListItem({ triangle }: ITrianglesListItem) {
+export default function TrianglesListItem({ triangle }: ITrianglesListItem) {
   return (
     <AccordionItem>
       <h2>
@@ -31,5 +31,3 @@ function TrianglesListItem({ triangle }: ITrianglesListItem) {
     </AccordionItem>
   );
 }
-
-export default TrianglesListItem;

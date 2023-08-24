@@ -11,7 +11,7 @@ import {
 
 import { IInfoModal } from './types';
 
-function InfoModal({ title, content, isOpen, onClose }: IInfoModal) {
+export default function InfoModal({ title, content, isOpen, onClose }: IInfoModal) {
   return (
     <>
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -31,5 +31,3 @@ function InfoModal({ title, content, isOpen, onClose }: IInfoModal) {
     </>
   );
 }
-
-export default InfoModal;

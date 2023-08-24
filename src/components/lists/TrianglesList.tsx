@@ -5,7 +5,7 @@ import { ITrianglesList } from 'components/lists/types';
 import TrianglesListHeading from 'components/lists/TrianglesListHeading';
 import TrianglesListItem from 'components/lists/TrianglesListItem';
 
-function TrianglesList({ triangles }: ITrianglesList) {
+export default function TrianglesList({ triangles }: ITrianglesList) {
   return (
     <Box>
       <TrianglesListHeading />
@@ -17,5 +17,3 @@ function TrianglesList({ triangles }: ITrianglesList) {
     </Box>
   );
 }
-
-export default TrianglesList;

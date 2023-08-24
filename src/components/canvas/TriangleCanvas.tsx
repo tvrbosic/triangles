@@ -2,7 +2,7 @@ import { useEffect, useRef, useCallback } from 'react';
 
 import { ITriangleCanvas } from 'components/canvas/types';
 
-function TriangleCanvas({ triangle, width, height }: ITriangleCanvas) {
+export default function TriangleCanvas({ triangle, width, height }: ITriangleCanvas) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   // Calculate scaling factor for triangle to better fit on canvas
@@ -51,5 +51,3 @@ function TriangleCanvas({ triangle, width, height }: ITriangleCanvas) {
 
   return <canvas ref={canvasRef} width={width} height={height} />;
 }
-
-export default TriangleCanvas;

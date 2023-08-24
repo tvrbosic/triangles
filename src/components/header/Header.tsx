@@ -5,7 +5,7 @@ import routes from 'router/routes';
 
 import Navigation from 'components/header/Navigation';
 
-function Header() {
+export default function Header() {
   const navigate = useNavigate();
 
   const addTriangleHandler = () => {
@@ -26,5 +26,3 @@ function Header() {
     </Box>
   );
 }
-
-export default Header;

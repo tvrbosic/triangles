@@ -9,7 +9,7 @@ import Home from 'pages/Home';
 import CreateTriangle from 'pages/CreateTriangle';
 import EditTriangle from 'pages/EditTriangle';
 
-const Router = () => {
+export default function Router() {
   return (
     <Routes>
       <Route path={routes.home} element={<Layout />}>
@@ -34,6 +34,4 @@ const Router = () => {
       </Route>
     </Routes>
   );
-};
-
-export default Router;
+}

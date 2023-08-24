@@ -1,6 +1,6 @@
 import { AbsoluteCenter, Box, Spinner } from '@chakra-ui/react';
 
-function LoadingOverlay() {
+export default function LoadingOverlay() {
   return (
     <Box
       position="fixed"
@@ -17,5 +17,3 @@ function LoadingOverlay() {
     </Box>
   );
 }
-
-export default LoadingOverlay;
