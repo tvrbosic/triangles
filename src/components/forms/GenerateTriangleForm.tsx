@@ -301,6 +301,12 @@ export default function GenerateTriangleForm() {
             </Flex>
             <Flex mb={2}>
               <Text fontWeight="bold" mr="10px">
+                Circumradius:
+              </Text>
+              {conditionalRender('circumradius')}
+            </Flex>
+            <Flex mb={2}>
+              <Text fontWeight="bold" mr="10px">
                 Type by sides:
               </Text>
               {conditionalRender('typeBySides')}

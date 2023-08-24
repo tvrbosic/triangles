@@ -7,14 +7,15 @@ export default function TriangleCanvas({ triangle, width, height }: ITriangleCan
 
   // Calculate scaling factor for triangle to better fit on canvas
   const determineScailingFactor = useCallback(() => {
-    const scalingFactor = Math.sqrt((width * height) / triangle.area) / 5;
+    const boundingCircleArea = Math.PI * Math.pow(triangle.circumradius, 2);
+    const scalingFactor = Math.sqrt((width * height) / boundingCircleArea) / 5;
     return scalingFactor;
   }, [triangle, width, height]);
 
   // Re-calculate vertices for shape to be centered on canvas
   const recalculateVertices = useCallback(() => {
-    const canvasCenterX = width / 2 - triangle.inradius * determineScailingFactor() - 50;
-    const canvasCenterY = height / 2 - triangle.inradius * determineScailingFactor() - 15;
+    const canvasCenterX = width / 2 - triangle.circumradius / 2 - 60;
+    const canvasCenterY = height / 2 - triangle.circumradius / 2 - 40;
     const calculatedVertices = triangle.vertices.map((vertex) => [
       vertex[0] * determineScailingFactor() + canvasCenterX,
       vertex[1] * determineScailingFactor() + canvasCenterY,

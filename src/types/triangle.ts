@@ -27,6 +27,7 @@ export interface ITriangleData {
   perimeter: number;
   area: number;
   inradius: number;
+  circumradius: number;
   typeBySides: ETypesBySides;
   typeByAngles: ETypesByAngles;
 }

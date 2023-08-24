@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import {
   AccordionPanel,
   Box,
@@ -95,6 +94,10 @@ export default function TrianglesListItemExpand({ triangle }: ITrianglesListItem
               <Flex gap="5px">
                 <Text fontWeight="bold">Inradius: </Text>
                 <Text>{triangle.data.inradius}</Text>
+              </Flex>
+              <Flex gap="5px">
+                <Text fontWeight="bold">Circumradius: </Text>
+                <Text>{triangle.data.circumradius}</Text>
               </Flex>
               <Flex gap="5px">
                 <Text fontWeight="bold">Type by sides: </Text>

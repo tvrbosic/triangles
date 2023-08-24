@@ -62,6 +62,7 @@ export class Triangle {
       perimeter: perimeter,
       area: area,
       inradius: Triangle.calculateInradius(area, perimeter),
+      circumradius: Triangle.calculateCircumradius(a, radAngleA),
       typeBySides: Triangle.determineTypeBySides([a, b, c]),
       typeByAngles: Triangle.determineTypeByAngles([radAngleA, radAngleB, radAngleC]),
     };
@@ -92,6 +93,7 @@ export class Triangle {
       perimeter: perimeter,
       area: area,
       inradius: Triangle.calculateInradius(area, perimeter),
+      circumradius: Triangle.calculateCircumradius(a, radAngleA),
       typeBySides: Triangle.determineTypeBySides([a, b, c]),
       typeByAngles: Triangle.determineTypeByAngles([radAngleA, radAngleB, radAngleC]),
     };
@@ -117,6 +119,7 @@ export class Triangle {
       perimeter: perimeter,
       area: area,
       inradius: Triangle.calculateInradius(area, perimeter),
+      circumradius: Triangle.calculateCircumradius(a, radAngleA),
       typeBySides: Triangle.determineTypeBySides([a, b, c]),
       typeByAngles: Triangle.determineTypeByAngles([radAngleA, radAngleB, radAngleC]),
     };
@@ -134,6 +137,10 @@ export class Triangle {
 
   static calculateInradius(area: number, perimeter: number): number {
     return area / (perimeter / 2);
+  }
+
+  static calculateCircumradius(sideA: number, angleA: number): number {
+    return sideA / (2 * Math.sin(angleA));
   }
 
   static determineTypeBySides = (sides: [number, number, number]): ETypesBySides => {
