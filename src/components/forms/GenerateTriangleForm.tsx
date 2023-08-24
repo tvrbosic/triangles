@@ -19,6 +19,7 @@ import {
 } from 'utils/validations';
 import { Triangle } from 'classes/Triangle';
 import Api from 'api/Api';
+import { useAuthContext } from 'context/AuthContext';
 
 import GenerateTriangleFormHeading from 'components/forms/GenerateTriangleFormHeading';
 import LabelInput from 'components/forms/LabelInput';
@@ -72,6 +73,8 @@ export default function GenerateTriangleForm() {
   const [triangle, setTriangle] = useState<ITriangleData | undefined>(undefined);
   const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
   const [displayError, setDisplayError] = useState<boolean>(false);
+
+  const { user } = useAuthContext();
   const ApiClient = Api.getInstance();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -79,6 +82,7 @@ export default function GenerateTriangleForm() {
   const qPostTriangle = useMutation(() =>
     ApiClient.postTriangle({
       dateCreated: new Date().toISOString(),
+      authorId: user?.sub!.toString()!,
       data: triangle!,
     })
   );
@@ -291,9 +295,9 @@ export default function GenerateTriangleForm() {
             </Flex>
             <Flex mb={2}>
               <Text fontWeight="bold" mr="10px">
-                Circumradius:
+                Inradius:
               </Text>
-              {conditionalRender('circumradius')}
+              {conditionalRender('inradius')}
             </Flex>
             <Flex mb={2}>
               <Text fontWeight="bold" mr="10px">

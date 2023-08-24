@@ -97,8 +97,8 @@ export default function TrianglesListItemExpand({ triangle }: ITrianglesListItem
                 <Text>{triangle.data.area}</Text>
               </Flex>
               <Flex gap="5px">
-                <Text fontWeight="bold">Circumradius: </Text>
-                <Text>{triangle.data.circumradius}</Text>
+                <Text fontWeight="bold">Inradius: </Text>
+                <Text>{triangle.data.inradius}</Text>
               </Flex>
               <Flex gap="5px">
                 <Text fontWeight="bold">Type by sides: </Text>

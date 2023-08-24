@@ -1,8 +1,7 @@
 export interface IUser {
-  id?: number;
+  sub?: number;
   password: string;
   email: string;
-  dateCreated: string;
 }
 
 export interface IUserCredentials {

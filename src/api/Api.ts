@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 
-import { IUserCredentials } from 'types/user';
+import { IUser, IUserCredentials } from 'types/user';
 import { ITriangleObject } from 'types/triangle';
 
 class ApiClient {
@@ -33,12 +33,13 @@ class ApiClient {
   }
 
   // ########### Triangles
-  public async getTriangles() {
-    const response = await this.axiosInstance.get('/triangles');
+  public async getTriangles(authorId: number) {
+    const response = await this.axiosInstance.get(`/triangles?authorId=${authorId}`);
     return response.data;
   }
 
   public async postTriangle(triangleObject: ITriangleObject) {
+    console.log(triangleObject);
     const response = await this.axiosInstance.post('/triangles', triangleObject);
     return response.data;
   }

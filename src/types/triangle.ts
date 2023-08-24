@@ -26,7 +26,7 @@ export interface ITriangleData {
   vertices: [TVertex, TVertex, TVertex];
   perimeter: number;
   area: number;
-  circumradius: number;
+  inradius: number;
   typeBySides: ETypesBySides;
   typeByAngles: ETypesByAngles;
 }
@@ -34,5 +34,6 @@ export interface ITriangleData {
 export interface ITriangleObject {
   id?: number;
   dateCreated: string;
+  authorId: string;
   data: ITriangleData;
 }

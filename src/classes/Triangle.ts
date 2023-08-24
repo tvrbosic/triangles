@@ -52,14 +52,16 @@ export class Triangle {
     const vertexA: TVertex = [0, 0];
     const vertexB: TVertex = [a, 0];
     const vertexC: TVertex = [b * Math.cos(radAngleA), b * Math.sin(radAngleB)];
+    const perimeter = Triangle.calculatePerimeter([a, b, c]);
+    const area = Triangle.calculateArea([a, b, c], [radAngleA, radAngleB, radAngleC]);
 
     return {
       sides: [a, b, c],
       angles: [radAngleA, radAngleB, radAngleC],
       vertices: [vertexA, vertexB, vertexC],
-      perimeter: Triangle.calculatePerimeter([a, b, c]),
-      area: Triangle.calculateArea([a, b, c], [radAngleA, radAngleB, radAngleC]),
-      circumradius: Triangle.calculateCircumradius(a, radAngleA),
+      perimeter: perimeter,
+      area: area,
+      inradius: Triangle.calculateInradius(area, perimeter),
       typeBySides: Triangle.determineTypeBySides([a, b, c]),
       typeByAngles: Triangle.determineTypeByAngles([radAngleA, radAngleB, radAngleC]),
     };
@@ -80,14 +82,16 @@ export class Triangle {
     const vertexA: TVertex = [0, 0];
     const vertexB: TVertex = [a, 0];
     const vertexC: TVertex = [b * Math.cos(radAngleA), b * Math.sin(radAngleB)];
+    const perimeter = Triangle.calculatePerimeter([a, b, c]);
+    const area = Triangle.calculateArea([a, b, c], [radAngleA, radAngleB, radAngleC]);
 
     return {
       sides: [a, b, c],
       angles: [radAngleA, radAngleB, radAngleC],
       vertices: [vertexA, vertexB, vertexC],
-      perimeter: Triangle.calculatePerimeter([a, b, c]),
-      area: Triangle.calculateArea([a, b, c], [radAngleA, radAngleB, radAngleC]),
-      circumradius: Triangle.calculateCircumradius(a, radAngleA),
+      perimeter: perimeter,
+      area: area,
+      inradius: Triangle.calculateInradius(area, perimeter),
       typeBySides: Triangle.determineTypeBySides([a, b, c]),
       typeByAngles: Triangle.determineTypeByAngles([radAngleA, radAngleB, radAngleC]),
     };
@@ -103,14 +107,16 @@ export class Triangle {
     const vertexA: TVertex = [0, 0];
     const vertexB: TVertex = [a, 0];
     const vertexC: TVertex = [b * Math.cos(radAngleA), b * Math.sin(radAngleB)];
+    const perimeter = Triangle.calculatePerimeter([a, b, c]);
+    const area = Triangle.calculateArea([a, b, c], [radAngleA, radAngleB, radAngleC]);
 
     return {
       sides: [a, b, c],
       angles: [radAngleA, radAngleB, radAngleC],
       vertices: [vertexA, vertexB, vertexC],
-      perimeter: Triangle.calculatePerimeter([a, b, c]),
-      area: Triangle.calculateArea([a, b, c], [radAngleA, radAngleB, radAngleC]),
-      circumradius: Triangle.calculateCircumradius(a, radAngleA),
+      perimeter: perimeter,
+      area: area,
+      inradius: Triangle.calculateInradius(area, perimeter),
       typeBySides: Triangle.determineTypeBySides([a, b, c]),
       typeByAngles: Triangle.determineTypeByAngles([radAngleA, radAngleB, radAngleC]),
     };
@@ -126,8 +132,8 @@ export class Triangle {
     else return (sides[0] * sides[1] * Math.sin(angles[2])) / 2;
   }
 
-  static calculateCircumradius(sideA: number, angleA: number): number {
-    return sideA / (2 * Math.sin(angleA));
+  static calculateInradius(area: number, perimeter: number): number {
+    return area / (perimeter / 2);
   }
 
   static determineTypeBySides = (sides: [number, number, number]): ETypesBySides => {
