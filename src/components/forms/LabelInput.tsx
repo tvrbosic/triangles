@@ -6,7 +6,7 @@ function LabelInput({ label, placeholder = '', value, onChange }: ILabeledInput)
   return (
     <Flex alignItems="center" gap="10px" mb={2}>
       <Text>{label}</Text>
-      <Input placeholder={placeholder} onChange={(e) => onChange(e.target.value)} />
+      <Input value={value} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} />
     </Flex>
   );
 }

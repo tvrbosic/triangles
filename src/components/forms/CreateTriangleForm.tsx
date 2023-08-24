@@ -46,8 +46,10 @@ function reducer(state: ICreateTriangleFormState, action: ICreateTriangleFormAct
       return { ...state, typeBySides: action.payload };
     case ECreateTriangleFormActions.SET_TYPE_BY_ANGLES:
       return { ...state, typeByAngles: action.payload };
+    case ECreateTriangleFormActions.RESET_FORM:
+      return { ...initialState };
     default:
-      return state;
+      return { ...state };
   }
 }
 
@@ -163,6 +165,11 @@ function CreateTriangleForm() {
     setDisplayError(true);
   };
 
+  const closeModalHandler = () => {
+    onClose();
+    dispatch({ type: ECreateTriangleFormActions.RESET_FORM, payload: '' });
+  };
+
   // ############ Effects
   // Validate inputs and generate triangle
   useEffect(() => {
@@ -207,6 +214,7 @@ function CreateTriangleForm() {
             <LabelInput
               label="a: "
               placeholder="Side a"
+              value={formState.sideA}
               onChange={(value: string) =>
                 inputChangeHandler(ECreateTriangleFormActions.SET_SIDE_A, value)
               }
@@ -214,6 +222,7 @@ function CreateTriangleForm() {
             <LabelInput
               label="b: "
               placeholder="Side b"
+              value={formState.sideB}
               onChange={(value: string) =>
                 inputChangeHandler(ECreateTriangleFormActions.SET_SIDE_B, value)
               }
@@ -221,6 +230,7 @@ function CreateTriangleForm() {
             <LabelInput
               label="c: "
               placeholder="Side c"
+              value={formState.sideC}
               onChange={(value: string) =>
                 inputChangeHandler(ECreateTriangleFormActions.SET_SIDE_C, value)
               }
@@ -234,6 +244,7 @@ function CreateTriangleForm() {
             <LabelInput
               label="A: "
               placeholder="Angle A"
+              value={formState.angleA}
               onChange={(value: string) =>
                 inputChangeHandler(ECreateTriangleFormActions.SET_ANGLE_A, value)
               }
@@ -241,6 +252,7 @@ function CreateTriangleForm() {
             <LabelInput
               label="B: "
               placeholder="Angle B"
+              value={formState.angleB}
               onChange={(value: string) =>
                 inputChangeHandler(ECreateTriangleFormActions.SET_ANGLE_B, value)
               }
@@ -248,6 +260,7 @@ function CreateTriangleForm() {
             <LabelInput
               label="C: "
               placeholder="Angle C"
+              value={formState.angleC}
               onChange={(value: string) =>
                 inputChangeHandler(ECreateTriangleFormActions.SET_ANGLE_C, value)
               }
@@ -304,7 +317,7 @@ function CreateTriangleForm() {
         title="Creation successfull"
         content={<Text>Triangle was successfully added!</Text>}
         isOpen={isOpen}
-        onClose={onClose}
+        onClose={closeModalHandler}
       />
     </>
   );

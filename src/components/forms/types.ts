@@ -22,6 +22,7 @@ export enum ECreateTriangleFormActions {
   SET_AREA = 'SET_AREA',
   SET_TYPE_BY_SIDES = 'SET_TYPE_BY_SIDES',
   SET_TYPE_BY_ANGLES = 'SET_TYPE_BY_ANGLES',
+  RESET_FORM = 'RESET_FORM',
 }
 
 export interface ICreateTriangleFormActions {
