@@ -1,4 +1,4 @@
-import { ITriangle } from 'types/common';
+import { ITriangleData } from 'types/common';
 import { ICreateTriangleFormState } from 'components/forms/types';
 
 // Check if we have at least one side
@@ -60,6 +60,6 @@ export const checkThreeSides = (values: ICreateTriangleFormState) => {
 };
 
 // Check if generated triangle is valid
-export const checkGeneratedTriangle = (triangle: ITriangle) => {
+export const checkGeneratedTriangle = (triangle: ITriangleData) => {
   return triangle.area ? true : false;
 };

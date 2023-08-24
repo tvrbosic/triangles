@@ -20,12 +20,13 @@ export enum ETypesByAngles {
   NOT_A_TRIANGLE = 'Not a triangle',
 }
 
-export interface ITriangle {
+export interface ITriangleData {
   sides: [number, number, number];
   angles: [number, number, number];
-  vertex: [TVertex, TVertex, TVertex];
+  vertices: [TVertex, TVertex, TVertex];
   perimeter: number;
   area: number;
+  circumradius: number;
   typeBySides: ETypesBySides;
   typeByAngles: ETypesByAngles;
 }
@@ -33,5 +34,5 @@ export interface ITriangle {
 export interface ITriangleObject {
   id?: number;
   dateCreated: string;
-  data: ITriangle;
+  data: ITriangleData;
 }

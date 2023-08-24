@@ -7,7 +7,7 @@ import {
   ECreateTriangleFormActions,
   ICreateTriangleFormActions,
 } from 'components/forms/types';
-import { ITriangle, EGenerateTriangleMethods } from 'types/common';
+import { ITriangleData, EGenerateTriangleMethods } from 'types/common';
 import {
   checkSidePresent,
   checkThreeValuesOneSide,
@@ -68,7 +68,7 @@ const initialState: ICreateTriangleFormState = {
 
 function CreateTriangleForm() {
   const [formState, dispatch] = useReducer(reducer, initialState);
-  const [triangle, setTriangle] = useState<ITriangle | undefined>(undefined);
+  const [triangle, setTriangle] = useState<ITriangleData | undefined>(undefined);
   const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
   const [displayError, setDisplayError] = useState<boolean>(false);
   const ApiClient = Api.getInstance();
@@ -194,7 +194,7 @@ function CreateTriangleForm() {
   }, [qPostTriangle.isSuccess, onOpen]);
 
   // ############ Conditional renders
-  const conditionalRender = (key: keyof ITriangle) => {
+  const conditionalRender = (key: keyof ITriangleData) => {
     if (triangle && triangle[key]) {
       return <Text>{triangle[key]}</Text>;
     }

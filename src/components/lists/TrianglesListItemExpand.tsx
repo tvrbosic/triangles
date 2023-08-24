@@ -3,6 +3,7 @@ import {
   AccordionPanel,
   Box,
   Flex,
+  Center,
   Heading,
   Text,
   Stack,
@@ -16,6 +17,7 @@ import { ITrianglesListItemExpand } from 'components/lists/types';
 import { radiansToDegrees } from 'utils/numbers';
 import Api from 'api/Api';
 
+import TriangleCanvas from 'components/canvas/TriangleCanvas';
 import LoadingOverlay from 'components/loader/LoadingOverlay';
 import InfoModal from 'components/modals/InfoModal';
 
@@ -95,8 +97,16 @@ function TrianglesListItemExpand({ triangle }: ITrianglesListItemExpand) {
                 <Text>{triangle.data.area}</Text>
               </Flex>
               <Flex gap="5px">
-                <Text fontWeight="bold">Type: </Text>
-                <Text>{`${triangle.data.typeBySides} & ${triangle.data.typeByAngles}`}</Text>
+                <Text fontWeight="bold">Circumradius: </Text>
+                <Text>{triangle.data.circumradius}</Text>
+              </Flex>
+              <Flex gap="5px">
+                <Text fontWeight="bold">Type by sides: </Text>
+                <Text>{triangle.data.typeBySides}</Text>
+              </Flex>
+              <Flex gap="5px">
+                <Text fontWeight="bold">Type by angles: </Text>
+                <Text>{triangle.data.typeByAngles}</Text>
               </Flex>
             </Box>
 
@@ -107,8 +117,10 @@ function TrianglesListItemExpand({ triangle }: ITrianglesListItemExpand) {
               </Button>
             </Flex>
           </Stack>
-          <Flex border="1px solid" borderColor="gray.100" flexGrow={1}>
-            Image placeholder
+          <Flex border="1px solid" borderColor="gray.200" flexGrow={1}>
+            <Center>
+              <TriangleCanvas triangle={triangle.data} width={600} height={470} />
+            </Center>
           </Flex>
         </Flex>
       </AccordionPanel>

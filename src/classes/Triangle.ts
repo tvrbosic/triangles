@@ -1,6 +1,6 @@
 import {
   TVertex,
-  ITriangle,
+  ITriangleData,
   EGenerateTriangleMethods,
   ETypesBySides,
   ETypesByAngles,
@@ -8,7 +8,7 @@ import {
 import { degreesToRadians, radiansToDegrees } from 'utils/numbers';
 
 export class Triangle {
-  data: ITriangle;
+  data: ITriangleData;
 
   constructor(
     input1: number,
@@ -16,7 +16,7 @@ export class Triangle {
     input3: number,
     generateMethod: EGenerateTriangleMethods
   ) {
-    let triangleData: ITriangle | undefined;
+    let triangleData: ITriangleData | undefined;
 
     switch (generateMethod) {
       case EGenerateTriangleMethods.SSA:
@@ -38,7 +38,7 @@ export class Triangle {
     this.data = triangleData;
   }
 
-  private static generateFromSSA(a: number, b: number, angleC: number): ITriangle {
+  private static generateFromSSA(a: number, b: number, angleC: number): ITriangleData {
     const radAngleC = degreesToRadians(angleC);
 
     // Calculate the third side using the Law of Cosines
@@ -56,15 +56,16 @@ export class Triangle {
     return {
       sides: [a, b, c],
       angles: [radAngleA, radAngleB, radAngleC],
-      vertex: [vertexA, vertexB, vertexC],
+      vertices: [vertexA, vertexB, vertexC],
       perimeter: Triangle.calculatePerimeter([a, b, c]),
       area: Triangle.calculateArea([a, b, c], [radAngleA, radAngleB, radAngleC]),
+      circumradius: Triangle.calculateCircumradius(a, radAngleA),
       typeBySides: Triangle.determineTypeBySides([a, b, c]),
       typeByAngles: Triangle.determineTypeByAngles([radAngleA, radAngleB, radAngleC]),
     };
   }
 
-  private static generateFromAAS(angleA: number, angleC: number, b: number): ITriangle {
+  private static generateFromAAS(angleA: number, angleC: number, b: number): ITriangleData {
     const radAngleA = degreesToRadians(angleA);
     const radAngleC = degreesToRadians(angleC);
 
@@ -83,15 +84,16 @@ export class Triangle {
     return {
       sides: [a, b, c],
       angles: [radAngleA, radAngleB, radAngleC],
-      vertex: [vertexA, vertexB, vertexC],
+      vertices: [vertexA, vertexB, vertexC],
       perimeter: Triangle.calculatePerimeter([a, b, c]),
       area: Triangle.calculateArea([a, b, c], [radAngleA, radAngleB, radAngleC]),
+      circumradius: Triangle.calculateCircumradius(a, radAngleA),
       typeBySides: Triangle.determineTypeBySides([a, b, c]),
       typeByAngles: Triangle.determineTypeByAngles([radAngleA, radAngleB, radAngleC]),
     };
   }
 
-  private static generateFromSSS(a: number, b: number, c: number): ITriangle {
+  private static generateFromSSS(a: number, b: number, c: number): ITriangleData {
     // Calculate angles using the Law of Cosines
     const radAngleA = Math.acos((b ** 2 + c ** 2 - a ** 2) / (2 * b * c));
     const radAngleB = Math.acos((a ** 2 + c ** 2 - b ** 2) / (2 * a * c));
@@ -105,9 +107,10 @@ export class Triangle {
     return {
       sides: [a, b, c],
       angles: [radAngleA, radAngleB, radAngleC],
-      vertex: [vertexA, vertexB, vertexC],
+      vertices: [vertexA, vertexB, vertexC],
       perimeter: Triangle.calculatePerimeter([a, b, c]),
       area: Triangle.calculateArea([a, b, c], [radAngleA, radAngleB, radAngleC]),
+      circumradius: Triangle.calculateCircumradius(a, radAngleA),
       typeBySides: Triangle.determineTypeBySides([a, b, c]),
       typeByAngles: Triangle.determineTypeByAngles([radAngleA, radAngleB, radAngleC]),
     };
@@ -121,6 +124,10 @@ export class Triangle {
   static calculateArea(sides: [number, number, number], angles: [number, number, number]): number {
     if (!sides || !angles) return 0;
     else return (sides[0] * sides[1] * Math.sin(angles[2])) / 2;
+  }
+
+  static calculateCircumradius(sideA: number, angleA: number): number {
+    return sideA / (2 * Math.sin(angleA));
   }
 
   static determineTypeBySides = (sides: [number, number, number]): ETypesBySides => {
