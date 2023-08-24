@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -23,7 +23,7 @@ export default function Login() {
   const [password, setPassword] = useState('');
 
   const ApiClient = Api.getInstance();
-  const { setAuthToken } = useAuthContext();
+  const { user, setAuthToken } = useAuthContext();
   const navigate = useNavigate();
 
   const qLoginUser = useMutation(
@@ -34,8 +34,7 @@ export default function Login() {
       }),
     {
       onSuccess: (data) => {
-        setAuthToken(data.token);
-        navigate(routes.home);
+        setAuthToken(data.accessToken);
       },
     }
   );
@@ -43,6 +42,12 @@ export default function Login() {
   const signInHandler = () => {
     qLoginUser.mutate();
   };
+
+  useEffect(() => {
+    if (user) {
+      navigate(routes.home);
+    }
+  }, [user, navigate]);
 
   return (
     <AbsoluteCenter>

@@ -4,8 +4,9 @@ import routes from 'router/routes';
 
 export default function Navigation() {
   return (
-    <Flex>
+    <Flex gap="20px">
       <Link href={routes.home}>Dashboard</Link>
+      <Link href={routes.createTriangle}>Generate</Link>
     </Flex>
   );
 }

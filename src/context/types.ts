@@ -1,7 +1,7 @@
 import { IUser } from 'types/user';
 
 export interface IAuthContext {
-  token: string;
+  token: string | null;
   user: IUser | null;
   setAuthToken: (token: string) => void;
   clearAuthToken: () => void;

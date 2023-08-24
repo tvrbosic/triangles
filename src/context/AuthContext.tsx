@@ -18,15 +18,13 @@ export const useAuthContext = () => useContext(AuthContext);
 
 export function AuthContextProvider({ ...children }: IAuthProvider) {
   const [appUser, setAppUser] = useState<IUser | null>(null);
-  const [token, setToken] = useState<string>('');
+  const [token, setToken] = useState<string | null>(null);
   const [loadingToken, setLoadingToken] = useState<boolean>(true);
 
   // On application start check if user token already exists in local storage and set it to context
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token) {
-      setToken(token);
-    }
+    if (token) setToken(token);
     setLoadingToken(false);
   }, []);
 
@@ -50,7 +48,7 @@ export function AuthContextProvider({ ...children }: IAuthProvider) {
   const clearAuthToken = useCallback(() => {
     setToken('');
     setAppUser(null);
-    localStorage.setItem('token', '');
+    localStorage.removeItem('token');
   }, []);
 
   // Prepare context object which will be used and accessed throughout application
