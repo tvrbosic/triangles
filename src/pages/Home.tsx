@@ -7,7 +7,7 @@ import TrianglesList from 'components/lists/TrianglesList';
 
 function Home() {
   const ApiClient = Api.getInstance();
-  const qGetTriangles = useQuery(['triangles'], ApiClient.getTriangles);
+  const qGetTriangles = useQuery(['triangles'], () => ApiClient.getTriangles());
 
   return (
     <Container>
