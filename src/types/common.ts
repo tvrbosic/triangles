@@ -32,7 +32,6 @@ export interface ITriangle {
 
 export interface ITriangleObject {
   id?: number;
-  name: string;
   dateCreated: string;
   data: ITriangle;
 }

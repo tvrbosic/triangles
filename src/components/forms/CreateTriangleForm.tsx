@@ -24,8 +24,6 @@ import LabelInput from 'components/forms/LabelInput';
 
 function reducer(state: ICreateTriangleFormState, action: ICreateTriangleFormActions) {
   switch (action.type) {
-    case ECreateTriangleFormActions.SET_NAME:
-      return { ...state, name: action.payload };
     case ECreateTriangleFormActions.SET_SIDE_A:
       return { ...state, sideA: action.payload };
     case ECreateTriangleFormActions.SET_SIDE_B:
@@ -52,7 +50,6 @@ function reducer(state: ICreateTriangleFormState, action: ICreateTriangleFormAct
 }
 
 const initialState: ICreateTriangleFormState = {
-  name: '',
   sideA: '',
   sideB: '',
   sideC: '',
@@ -74,7 +71,6 @@ function CreateTriangleForm() {
   // ############ Mutations
   const qPostTriangle = useMutation(() =>
     postTriangle({
-      name: formState.name,
       dateCreated: new Date().toISOString(),
       data: triangle!,
     })
@@ -86,11 +82,6 @@ function CreateTriangleForm() {
     setDisplayError(false);
 
     // ### Validate
-    if (!formTriangleData.name) {
-      setErrorMessage('Please enter name!');
-      setTriangle(undefined);
-      return;
-    }
     if (!checkSidePresent(formTriangleData)) {
       setErrorMessage('Please provide at least one side!');
       setTriangle(undefined);
@@ -195,16 +186,6 @@ function CreateTriangleForm() {
   return (
     <Box flexGrow={1}>
       <CreateTriangleFormHeading />
-
-      <Box mb={4}>
-        <LabelInput
-          label="Name"
-          placeholder="Triangle name"
-          onChange={(value: string) =>
-            inputChangeHandler(ECreateTriangleFormActions.SET_NAME, value)
-          }
-        />
-      </Box>
 
       <Flex gap="50px" mb={4}>
         <Box flexShrink={0}>

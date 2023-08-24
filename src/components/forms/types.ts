@@ -1,5 +1,4 @@
 export interface ICreateTriangleFormState {
-  name: string;
   sideA: string;
   sideB: string;
   sideC: string;
@@ -13,7 +12,6 @@ export interface ICreateTriangleFormState {
 }
 
 export enum ECreateTriangleFormActions {
-  SET_NAME = 'SET_NAME',
   SET_SIDE_A = 'SET_SIDE_A',
   SET_SIDE_B = 'SET_SIDE_B',
   SET_SIDE_C = 'SET_SIDE_C',

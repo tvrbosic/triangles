@@ -7,15 +7,12 @@ function TrianglesListHeading() {
         ID
       </Text>
       <Text flexGrow={1} pl={2}>
-        NAME
-      </Text>
-      <Text w="15%" pl={2}>
         CREATED
       </Text>
-      <Text w="15%" pl={2}>
+      <Text w="25%" pl={2}>
         TYPE BY SIDE
       </Text>
-      <Text w="15%" pl={2}>
+      <Text w="25%" pl={2}>
         TYPE BY ANGLE
       </Text>
       <Box w="20px" />

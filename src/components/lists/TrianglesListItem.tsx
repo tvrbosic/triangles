@@ -14,15 +14,12 @@ function TrianglesListItem({ triangle }: ITrianglesListItem) {
               {triangle.id}
             </Flex>
             <Flex flexGrow={1} pl={3}>
-              {triangle.name}
-            </Flex>
-            <Flex w="15%" pl={3}>
               {new Date(triangle.dateCreated).toLocaleDateString()}
             </Flex>
-            <Flex w="15%" pl={3}>
+            <Flex w="25%" pl={3}>
               {triangle.data.typeBySides}
             </Flex>
-            <Flex w="15%" pl={3}>
+            <Flex w="25%" pl={3}>
               {triangle.data.typeByAngles}
             </Flex>
           </Flex>
