@@ -1,6 +1,13 @@
 import { ITriangleData } from 'types/triangle';
 import { IGenerateTriangleFormState } from 'components/forms/types';
 
+export function validateEmail(email: string): boolean {
+  const re =
+    /^(([^<>()\\[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
+
+// ########### Triangle generation form validations
 // Check if we have at least one side
 export const checkSidePresent = (values: IGenerateTriangleFormState): boolean => {
   const { sideA, sideB, sideC } = values;

@@ -26,7 +26,9 @@ export default function TrianglesListItemExpand({ triangle }: ITrianglesListItem
   const queryClient = useQueryClient();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const qDeleteTriangle = useMutation(() => ApiClient.deleteTriangle(triangle.id!));
+  const qDeleteTriangle = useMutation(() => ApiClient.deleteTriangle(triangle.id!), {
+    onSuccess: () => onOpen(),
+  });
 
   const deleteHandler = () => {
     qDeleteTriangle.mutate();
@@ -36,12 +38,6 @@ export default function TrianglesListItemExpand({ triangle }: ITrianglesListItem
     onClose();
     queryClient.invalidateQueries(['triangles']);
   };
-
-  useEffect(() => {
-    if (qDeleteTriangle.isSuccess) {
-      onOpen();
-    }
-  }, [qDeleteTriangle.isSuccess, onOpen]);
 
   return (
     <>

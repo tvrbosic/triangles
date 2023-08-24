@@ -181,42 +181,6 @@
       "id": 5
     },
     {
-      "dateCreated": "2023-08-24T19:56:08.454Z",
-      "authorId": "2",
-      "data": {
-        "sides": [
-          1,
-          1,
-          1
-        ],
-        "angles": [
-          1.0471975511965979,
-          1.0471975511965979,
-          1.0471975511965979
-        ],
-        "vertices": [
-          [
-            0,
-            0
-          ],
-          [
-            1,
-            0
-          ],
-          [
-            0.4999999999999999,
-            0.8660254037844387
-          ]
-        ],
-        "perimeter": 3,
-        "area": 0.43301270189221935,
-        "inradius": 0.2886751345948129,
-        "typeBySides": "Equilateral",
-        "typeByAngles": "Acute"
-      },
-      "id": 6
-    },
-    {
       "dateCreated": "2023-08-24T20:02:22.948Z",
       "authorId": "1",
       "data": {
@@ -263,6 +227,11 @@
       "email": "user@email.com",
       "password": "$2a$10$/bpGuZ8BO7HWEpcBLcsK8eIux.X0t5thjvdQZmkfnmJ4opNDLRBEO",
       "id": 2
+    },
+    {
+      "email": "test@email.com",
+      "password": "$2a$10$Mp3nh4Rb1KMUp.AgeTLjDegV3TSDJYn1JCeINcjJMgDQD5C.Szrn2",
+      "id": 3
     }
   ]
 }
