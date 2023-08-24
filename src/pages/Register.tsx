@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -12,51 +12,51 @@ import {
   Heading,
   Link,
   Text,
+  useDisclosure,
 } from '@chakra-ui/react';
 
-import { useAuthContext } from 'context/AuthContext';
 import Api from 'api/Api';
 import routes from 'router/routes';
 
-export default function Login() {
+import InfoModal from 'components/modals/InfoModal';
+
+export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [repeatedPassword, setRepeatedPassword] = useState('');
 
   const ApiClient = Api.getInstance();
-  const { user, setAuthToken } = useAuthContext();
   const navigate = useNavigate();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const qLoginUser = useMutation(
+  const qRegisterUser = useMutation(
     () =>
-      ApiClient.postLogin({
+      ApiClient.postRegister({
         email: email,
         password: password,
       }),
     {
-      onSuccess: (data) => {
-        setAuthToken(data.accessToken);
-      },
+      onSuccess: () => onOpen(),
     }
   );
 
-  const registerHandler = () => {
-    navigate(routes.register);
-  };
-
   const signInHandler = () => {
-    qLoginUser.mutate();
+    qRegisterUser.mutate();
   };
 
-  useEffect(() => {
-    if (user) {
-      navigate(routes.home);
-    }
-  }, [user, navigate]);
+  const backToLoginHandler = () => {
+    navigate(routes.login);
+  };
+
+  const closeModalHandler = () => {
+    onClose();
+    navigate(routes.login);
+  };
 
   return (
     <AbsoluteCenter>
       <Stack align="center" mb={6}>
-        <Heading size="xl">Sign in</Heading>
+        <Heading size="xl">Register</Heading>
       </Stack>
 
       <Box rounded="lg" bg="white" boxShadow="lg" p={8} minW={350}>
@@ -81,21 +81,38 @@ export default function Login() {
             />
           </FormControl>
 
+          <FormControl id="repeatedPassword">
+            <FormLabel>Repeat password</FormLabel>
+            <Input
+              placeholder="Repeat password..."
+              value={repeatedPassword}
+              type="password"
+              onChange={(e) => setRepeatedPassword(e.target.value)}
+            />
+          </FormControl>
+
           <Stack spacing={10}>
-            <Link colorScheme="teal" textAlign={'center'} onClick={registerHandler}>
-              Register a new account
+            <Link colorScheme="teal" textAlign={'center'} onClick={backToLoginHandler}>
+              Back to login page
             </Link>
-            {qLoginUser.isError && (
+            {qRegisterUser.isError && (
               <Text color="crimson" align="center">
-                Invalid email and/or password!
+                Error procesing request!
               </Text>
             )}
             <Button colorScheme="teal" onClick={signInHandler}>
-              Sign in
+              Submit
             </Button>
           </Stack>
         </Stack>
       </Box>
+
+      <InfoModal
+        title="Creation successfull"
+        content={<Text>User successfull created!</Text>}
+        isOpen={isOpen}
+        onClose={closeModalHandler}
+      />
     </AbsoluteCenter>
   );
 }

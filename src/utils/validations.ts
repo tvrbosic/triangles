@@ -1,15 +1,15 @@
 import { ITriangleData } from 'types/triangle';
-import { ICreateTriangleFormState } from 'components/forms/types';
+import { IGenerateTriangleFormState } from 'components/forms/types';
 
 // Check if we have at least one side
-export const checkSidePresent = (values: ICreateTriangleFormState): boolean => {
+export const checkSidePresent = (values: IGenerateTriangleFormState): boolean => {
   const { sideA, sideB, sideC } = values;
 
   return Boolean(sideA || sideB || sideC);
 };
 
 // Check if we have three values and at least one side
-export const checkThreeValuesOneSide = (values: ICreateTriangleFormState) => {
+export const checkThreeValuesOneSide = (values: IGenerateTriangleFormState) => {
   if (checkSidePresent(values)) {
     const { sideA, sideB, sideC, angleA, angleB, angleC } = values;
     const sides = [sideA, sideB, sideC];
@@ -22,7 +22,7 @@ export const checkThreeValuesOneSide = (values: ICreateTriangleFormState) => {
 };
 
 // Check if we have too many entered values (more than 3)
-export const checkTooManyValues = (values: ICreateTriangleFormState) => {
+export const checkTooManyValues = (values: IGenerateTriangleFormState) => {
   const { sideA, sideB, sideC, angleA, angleB, angleC } = values;
   const sides = [sideA, sideB, sideC];
   const angles = [angleA, angleB, angleC];
@@ -31,7 +31,7 @@ export const checkTooManyValues = (values: ICreateTriangleFormState) => {
 };
 
 // Check if we have one side and two angles
-export const checkOneSideTwoAngles = (values: ICreateTriangleFormState) => {
+export const checkOneSideTwoAngles = (values: IGenerateTriangleFormState) => {
   if (checkSidePresent(values)) {
     const { angleA, angleB, angleC } = values;
     const angles = [angleA, angleB, angleC];
@@ -43,7 +43,7 @@ export const checkOneSideTwoAngles = (values: ICreateTriangleFormState) => {
 };
 
 // Check if we have two sides and one angle
-export const checkTwoSidesOneAngle = (values: ICreateTriangleFormState) => {
+export const checkTwoSidesOneAngle = (values: IGenerateTriangleFormState) => {
   if (checkSidePresent(values)) {
     const { sideA, sideB, sideC, angleA, angleB, angleC } = values;
     const sides = [sideA, sideB, sideC];
@@ -57,7 +57,7 @@ export const checkTwoSidesOneAngle = (values: ICreateTriangleFormState) => {
 };
 
 // Check if we have three sides
-export const checkThreeSides = (values: ICreateTriangleFormState) => {
+export const checkThreeSides = (values: IGenerateTriangleFormState) => {
   if (checkSidePresent(values)) {
     const { sideA, sideB, sideC } = values;
     const sides = [sideA, sideB, sideC];

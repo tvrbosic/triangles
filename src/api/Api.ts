@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 
+import { IUserCredentials } from 'types/user';
 import { ITriangleObject } from 'types/triangle';
 
 class ApiClient {
@@ -21,8 +22,13 @@ class ApiClient {
   }
 
   // ########### Auth
-  public async postLogin(payload: { email: string; password: string }) {
+  public async postLogin(payload: IUserCredentials) {
     const response = await this.axiosInstance.post('/login', { ...payload });
+    return response.data;
+  }
+
+  public async postRegister(payload: IUserCredentials) {
+    const response = await this.axiosInstance.post('/register', { ...payload });
     return response.data;
   }
 

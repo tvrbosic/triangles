@@ -6,9 +6,9 @@ import { useAuthContext } from 'context/AuthContext';
 
 import Layout from 'components/layouts/Layout';
 import Login from 'pages/Login';
+import Register from 'pages/Register';
 import Home from 'pages/Home';
-import CreateTriangle from 'pages/CreateTriangle';
-import EditTriangle from 'pages/EditTriangle';
+import GenerateTriangle from 'pages/GenerateTriangle';
 
 export default function Router() {
   const { token } = useAuthContext();
@@ -18,10 +18,10 @@ export default function Router() {
       <Route element={<Layout />}>
         <Route element={<ProtectedRoute token={token} />}>
           <Route index path={routes.home} element={<Home />} />
-          <Route path={routes.createTriangle} element={<CreateTriangle />} />
-          <Route path={routes.editTriangle} element={<EditTriangle />} />
+          <Route path={routes.generateTriangle} element={<GenerateTriangle />} />
         </Route>
         <Route path={routes.login} element={<Login />} />
+        <Route path={routes.register} element={<Register />} />
       </Route>
     </Routes>
   );

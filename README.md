@@ -20,10 +20,10 @@ Application for generating and visualizing triangles.
 
 ### Admin
 
-- Username: admin
+- Email: admin@email.com
 - Password: admin
 
 ### User
 
-- Username: user
+- Email: user@email.com
 - Password: user

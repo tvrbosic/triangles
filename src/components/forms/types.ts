@@ -1,4 +1,4 @@
-export interface ICreateTriangleFormState {
+export interface IGenerateTriangleFormState {
   sideA: string;
   sideB: string;
   sideC: string;
@@ -11,7 +11,7 @@ export interface ICreateTriangleFormState {
   typeByAngles: string;
 }
 
-export enum ECreateTriangleFormActions {
+export enum EGenerateTriangleFormActions {
   SET_SIDE_A = 'SET_SIDE_A',
   SET_SIDE_B = 'SET_SIDE_B',
   SET_SIDE_C = 'SET_SIDE_C',
@@ -25,8 +25,8 @@ export enum ECreateTriangleFormActions {
   RESET_FORM = 'RESET_FORM',
 }
 
-export interface ICreateTriangleFormActions {
-  type: ECreateTriangleFormActions;
+export interface IGenerateTriangleFormActions {
+  type: EGenerateTriangleFormActions;
   payload: string;
 }
 

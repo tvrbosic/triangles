@@ -3,9 +3,9 @@ import { Box, Button, Center, Flex, Heading, Text, useDisclosure } from '@chakra
 import { useMutation } from '@tanstack/react-query';
 
 import {
-  ICreateTriangleFormState,
-  ECreateTriangleFormActions,
-  ICreateTriangleFormActions,
+  IGenerateTriangleFormState,
+  EGenerateTriangleFormActions,
+  IGenerateTriangleFormActions,
 } from 'components/forms/types';
 import { ITriangleData, EGenerateTriangleMethods } from 'types/triangle';
 import {
@@ -20,41 +20,41 @@ import {
 import { Triangle } from 'classes/Triangle';
 import Api from 'api/Api';
 
-import CreateTriangleFormHeading from 'components/forms/CreateTriangleFormHeading';
+import GenerateTriangleFormHeading from 'components/forms/GenerateTriangleFormHeading';
 import LabelInput from 'components/forms/LabelInput';
 import LoadingOverlay from 'components/loader/LoadingOverlay';
 import InfoModal from 'components/modals/InfoModal';
 
-function reducer(state: ICreateTriangleFormState, action: ICreateTriangleFormActions) {
+function reducer(state: IGenerateTriangleFormState, action: IGenerateTriangleFormActions) {
   switch (action.type) {
-    case ECreateTriangleFormActions.SET_SIDE_A:
+    case EGenerateTriangleFormActions.SET_SIDE_A:
       return { ...state, sideA: action.payload };
-    case ECreateTriangleFormActions.SET_SIDE_B:
+    case EGenerateTriangleFormActions.SET_SIDE_B:
       return { ...state, sideB: action.payload };
-    case ECreateTriangleFormActions.SET_SIDE_C:
+    case EGenerateTriangleFormActions.SET_SIDE_C:
       return { ...state, sideC: action.payload };
-    case ECreateTriangleFormActions.SET_ANGLE_A:
+    case EGenerateTriangleFormActions.SET_ANGLE_A:
       return { ...state, angleA: action.payload };
-    case ECreateTriangleFormActions.SET_ANGLE_B:
+    case EGenerateTriangleFormActions.SET_ANGLE_B:
       return { ...state, angleB: action.payload };
-    case ECreateTriangleFormActions.SET_ANGLE_C:
+    case EGenerateTriangleFormActions.SET_ANGLE_C:
       return { ...state, angleC: action.payload };
-    case ECreateTriangleFormActions.SET_PERIMETER:
+    case EGenerateTriangleFormActions.SET_PERIMETER:
       return { ...state, perimeter: action.payload };
-    case ECreateTriangleFormActions.SET_AREA:
+    case EGenerateTriangleFormActions.SET_AREA:
       return { ...state, area: action.payload };
-    case ECreateTriangleFormActions.SET_TYPE_BY_SIDES:
+    case EGenerateTriangleFormActions.SET_TYPE_BY_SIDES:
       return { ...state, typeBySides: action.payload };
-    case ECreateTriangleFormActions.SET_TYPE_BY_ANGLES:
+    case EGenerateTriangleFormActions.SET_TYPE_BY_ANGLES:
       return { ...state, typeByAngles: action.payload };
-    case ECreateTriangleFormActions.RESET_FORM:
+    case EGenerateTriangleFormActions.RESET_FORM:
       return { ...initialState };
     default:
       return { ...state };
   }
 }
 
-const initialState: ICreateTriangleFormState = {
+const initialState: IGenerateTriangleFormState = {
   sideA: '',
   sideB: '',
   sideC: '',
@@ -67,7 +67,7 @@ const initialState: ICreateTriangleFormState = {
   typeByAngles: '',
 };
 
-export default function CreateTriangleForm() {
+export default function GenerateTriangleForm() {
   const [formState, dispatch] = useReducer(reducer, initialState);
   const [triangle, setTriangle] = useState<ITriangleData | undefined>(undefined);
   const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
@@ -84,7 +84,7 @@ export default function CreateTriangleForm() {
   );
 
   // ############ Functions
-  const validateInputsAndGenerate = useCallback((formTriangleData: ICreateTriangleFormState) => {
+  const validateInputsAndGenerate = useCallback((formTriangleData: IGenerateTriangleFormState) => {
     // Hide previous errors
     setDisplayError(false);
 
@@ -158,7 +158,7 @@ export default function CreateTriangleForm() {
   }, []);
 
   // ############ Handlers
-  const inputChangeHandler = (action: ECreateTriangleFormActions, payload: string) => {
+  const inputChangeHandler = (action: EGenerateTriangleFormActions, payload: string) => {
     dispatch({ type: action, payload });
   };
 
@@ -173,7 +173,7 @@ export default function CreateTriangleForm() {
 
   const closeModalHandler = () => {
     onClose();
-    dispatch({ type: ECreateTriangleFormActions.RESET_FORM, payload: '' });
+    dispatch({ type: EGenerateTriangleFormActions.RESET_FORM, payload: '' });
   };
 
   // ############ Effects
@@ -210,7 +210,7 @@ export default function CreateTriangleForm() {
   return (
     <>
       <Box flexGrow={1}>
-        <CreateTriangleFormHeading />
+        <GenerateTriangleFormHeading />
 
         <Flex gap="50px" mb={4}>
           <Box flexShrink={0}>
@@ -222,7 +222,7 @@ export default function CreateTriangleForm() {
               placeholder="Side a"
               value={formState.sideA}
               onChange={(value: string) =>
-                inputChangeHandler(ECreateTriangleFormActions.SET_SIDE_A, value)
+                inputChangeHandler(EGenerateTriangleFormActions.SET_SIDE_A, value)
               }
             />
             <LabelInput
@@ -230,7 +230,7 @@ export default function CreateTriangleForm() {
               placeholder="Side b"
               value={formState.sideB}
               onChange={(value: string) =>
-                inputChangeHandler(ECreateTriangleFormActions.SET_SIDE_B, value)
+                inputChangeHandler(EGenerateTriangleFormActions.SET_SIDE_B, value)
               }
             />
             <LabelInput
@@ -238,7 +238,7 @@ export default function CreateTriangleForm() {
               placeholder="Side c"
               value={formState.sideC}
               onChange={(value: string) =>
-                inputChangeHandler(ECreateTriangleFormActions.SET_SIDE_C, value)
+                inputChangeHandler(EGenerateTriangleFormActions.SET_SIDE_C, value)
               }
             />
           </Box>
@@ -252,7 +252,7 @@ export default function CreateTriangleForm() {
               placeholder="Angle A"
               value={formState.angleA}
               onChange={(value: string) =>
-                inputChangeHandler(ECreateTriangleFormActions.SET_ANGLE_A, value)
+                inputChangeHandler(EGenerateTriangleFormActions.SET_ANGLE_A, value)
               }
             />
             <LabelInput
@@ -260,7 +260,7 @@ export default function CreateTriangleForm() {
               placeholder="Angle B"
               value={formState.angleB}
               onChange={(value: string) =>
-                inputChangeHandler(ECreateTriangleFormActions.SET_ANGLE_B, value)
+                inputChangeHandler(EGenerateTriangleFormActions.SET_ANGLE_B, value)
               }
             />
             <LabelInput
@@ -268,7 +268,7 @@ export default function CreateTriangleForm() {
               placeholder="Angle C"
               value={formState.angleC}
               onChange={(value: string) =>
-                inputChangeHandler(ECreateTriangleFormActions.SET_ANGLE_C, value)
+                inputChangeHandler(EGenerateTriangleFormActions.SET_ANGLE_C, value)
               }
             />
           </Box>

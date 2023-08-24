@@ -6,7 +6,7 @@ export default function Navigation() {
   return (
     <Flex gap="20px">
       <Link href={routes.home}>Dashboard</Link>
-      <Link href={routes.createTriangle}>Generate</Link>
+      <Link href={routes.generateTriangle}>Generate</Link>
     </Flex>
   );
 }

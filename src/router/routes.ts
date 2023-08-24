@@ -2,8 +2,7 @@ const routes = {
   home: '/',
   login: '/login',
   register: '/register',
-  createTriangle: '/triangles/create',
-  editTriangle: '/triangles/:id',
+  generateTriangle: '/triangles/create',
 };
 
 export default routes;
