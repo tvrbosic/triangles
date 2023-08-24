@@ -21,6 +21,7 @@ import Api from 'api/Api';
 
 import CreateTriangleFormHeading from 'components/forms/CreateTriangleFormHeading';
 import LabelInput from 'components/forms/LabelInput';
+import LoadingOverlay from 'components/loader/LoadingOverlay';
 import InfoModal from 'components/modals/InfoModal';
 
 function reducer(state: ICreateTriangleFormState, action: ICreateTriangleFormActions) {
@@ -296,6 +297,9 @@ function CreateTriangleForm() {
           </Button>
         </Box>
       </Box>
+
+      {qPostTriangle.isLoading && <LoadingOverlay />}
+
       <InfoModal
         title="Creation successfull"
         content={<Text>Triangle was successfully added!</Text>}

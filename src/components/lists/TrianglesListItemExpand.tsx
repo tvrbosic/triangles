@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
   AccordionPanel,
   Box,
@@ -15,8 +16,8 @@ import { ITrianglesListItemExpand } from 'components/lists/types';
 import { radiansToDegrees } from 'utils/numbers';
 import Api from 'api/Api';
 
+import LoadingOverlay from 'components/loader/LoadingOverlay';
 import InfoModal from 'components/modals/InfoModal';
-import { useEffect } from 'react';
 
 function TrianglesListItemExpand({ triangle }: ITrianglesListItemExpand) {
   const ApiClient = Api.getInstance();
@@ -111,6 +112,9 @@ function TrianglesListItemExpand({ triangle }: ITrianglesListItemExpand) {
           </Flex>
         </Flex>
       </AccordionPanel>
+
+      {qDeleteTriangle.isLoading && <LoadingOverlay />}
+
       <InfoModal
         title="Delete successfull"
         content={<Text>Triangle was successfully deleted!</Text>}
