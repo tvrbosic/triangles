@@ -36,9 +36,9 @@ export default function TriangleCanvas({ triangle, width, height }: ITriangleCan
 
   // Re-calculate vertices for shape to be centered on canvas
   const recalculateVertices = useCallback(() => {
-    const canvasCenterX = width / 2 - calculateBoundingRectangle().width;
-    const canvasCenterY = height / 2 - calculateBoundingRectangle().height;
     const scalingFactor = determineScailingFactor();
+    const canvasCenterX = width / 2 - (calculateBoundingRectangle().width * scalingFactor) / 2;
+    const canvasCenterY = height / 2 - (calculateBoundingRectangle().height * scalingFactor) / 2;
 
     const calculatedVertices = triangle.vertices.map((vertex) => [
       vertex[0] * scalingFactor + canvasCenterX,
