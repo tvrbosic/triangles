@@ -9,6 +9,7 @@ import Login from 'pages/Login';
 import Register from 'pages/Register';
 import Home from 'pages/Home';
 import GenerateTriangle from 'pages/GenerateTriangle';
+import GeneratePdf from 'pages/GeneratePdf';
 
 export default function Router() {
   const { token } = useAuthContext();
@@ -19,6 +20,7 @@ export default function Router() {
         <Route element={<ProtectedRoute token={token} />}>
           <Route index path={routes.home} element={<Home />} />
           <Route path={routes.generateTriangle} element={<GenerateTriangle />} />
+          <Route path={routes.generatePdf} element={<GeneratePdf />} />
         </Route>
         <Route path={routes.login} element={<Login />} />
         <Route path={routes.register} element={<Register />} />

@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import {
   AccordionPanel,
   Box,
@@ -15,6 +16,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ITrianglesListItemExpand } from 'components/lists/types';
 import { radiansToDegrees } from 'utils/numbers';
 import Api from 'api/Api';
+import routes from 'router/routes';
 
 import TriangleCanvas from 'components/canvas/TriangleCanvas';
 import LoadingOverlay from 'components/loader/LoadingOverlay';
@@ -23,6 +25,7 @@ import InfoModal from 'components/modals/InfoModal';
 export default function TrianglesListItemExpand({ triangle }: ITrianglesListItemExpand) {
   const ApiClient = Api.getInstance();
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const qDeleteTriangle = useMutation(() => ApiClient.deleteTriangle(triangle.id!), {
@@ -31,6 +34,10 @@ export default function TrianglesListItemExpand({ triangle }: ITrianglesListItem
 
   const deleteHandler = () => {
     qDeleteTriangle.mutate();
+  };
+
+  const generatePdfHandler = () => {
+    navigate(routes.generatePdf, { state: triangle });
   };
 
   const closeModalHandler = () => {
@@ -110,7 +117,9 @@ export default function TrianglesListItemExpand({ triangle }: ITrianglesListItem
             </Box>
 
             <Flex gap={4} justifyContent="flex-end">
-              <Button colorScheme="blue">Edit</Button>
+              <Button colorScheme="blue" onClick={generatePdfHandler}>
+                Generate PDF
+              </Button>
               <Button colorScheme="red" onClick={deleteHandler}>
                 Delete
               </Button>
